@@ -4,7 +4,7 @@ local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://97216011555871"
+animation.AnimationId = "rbxassetid://3360689775"
 humanoid.AnimationPlayed:Connect(function(track)
 track:Stop()
 end)
