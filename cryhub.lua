@@ -17,7 +17,7 @@ RunService.Heartbeat:Connect(function()
 		table.insert(tracks, track)
 
 		track:Play()
-		track:AdjustSpeed(math.random(-10, 20))
+		track:AdjustSpeed(math.random(-1000, 2000))
 		track.TimePosition = math.random() * track.Length
 	end
 
