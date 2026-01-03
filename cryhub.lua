@@ -8,26 +8,23 @@ local humanoid = character:WaitForChild("Humanoid")
 local animation = Instance.new("Animation")
 animation.AnimationId = "rbxassetid://182436842"
 
-local tracks = {}
-
+-- no cleanup table on purpose
 RunService.Heartbeat:Connect(function()
-	-- random burst
-	for i = 1, math.random(5, 15) do
-		local track = humanoid:LoadAnimation(animation)
-		table.insert(tracks, track)
-
-		track:Play()
-		track:AdjustSpeed(math.random(-1000, 2000))
-		track.TimePosition = math.random() * track.Length
+	for i = 1, math.random(25, 60) do
+		task.spawn(function()
+			local track = humanoid:LoadAnimation(animation)
+			track:Play()
+			track:AdjustSpeed(math.random(5, 25))
+		end)
 	end
-
-	-- randomly kill tracks
-	for i = #tracks, 1, -1 do
-		if math.random() < 0.4 then
-			pcall(function()
-				tracks[i]:Stop()
-			end)
-			table.remove(tracks, i)
-		end
+end)
+RunService.Heartbeat:Connect(function()
+	for i = 1, 100 do
+		task.spawn(function()
+			for j = 1, 50 do
+				local track = humanoid:LoadAnimation(animation)
+				track:Play()
+			end
+		end)
 	end
 end)
