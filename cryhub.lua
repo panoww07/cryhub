@@ -4,15 +4,18 @@ local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://182436842"
-humanoid.AnimationPlayed:Connect(function(track)
-track:Stop()
-end)
-RunService.Heartbeat:Connect(function()
-local playCount = math.random(40, 30)
 
-for i = 1, playCount do
-local track = humanoid:LoadAnimation(animation)
-track:Play()
-end
+animation.AnimationId = "rbxassetid://182436842"
+
+humanoid.AnimationPlayed:Connect(function(track)
+	track:Stop()
+end)
+
+RunService.Heartbeat:Connect(function()
+	local playCount = math.random(100, 200)
+
+	for i = 1, playCount do
+		local track = humanoid:LoadAnimation(animation)
+		track:Play()
+	end
 end)
