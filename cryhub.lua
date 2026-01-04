@@ -8,32 +8,49 @@ local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local animator = humanoid:WaitForChild("Animator")
 
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://507766388" 
+
+local ids = {
+    "rbxassetid://507766388", 
+    "rbxassetid://507766666", 
+    "rbxassetid://507766777", 
+    "rbxassetid://913376220",
+    "rbxassetid://1083214730"
+}
+
 local active = false
+local currentIdIndex = 1
+
+
 UserInputService.InputBegan:Connect(function(input, gpe)
     if not gpe and input.KeyCode == Enum.KeyCode.K then
         active = not active
-        warn("EXTREME SPAM STATE:", active)
+        warn("SPEED MODE ACTIVE:", active)
     end
 end)
+
 
 humanoid.AnimationPlayed:Connect(function(track)
     if active then 
         track:Stop(0)
-        
-        Debris:AddItem(track, 0.1) 
+        track:Destroy() 
     end
 end)
 
+
 RunService.Heartbeat:Connect(function()
     if active then
-      
-        local playCount = math.random(80, 100)
         
-        for i = 1, playCount do
+        currentIdIndex = (currentIdIndex % #ids) + 1
+        local animation = Instance.new("Animation")
+        animation.AnimationId = ids[currentIdIndex]
+
+        
+        for i = 1, 150 do 
             local track = animator:LoadAnimation(animation)
             track:Play()
         end
+        
+       
+        animation:Destroy()
     end
 end)
