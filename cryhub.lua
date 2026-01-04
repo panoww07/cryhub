@@ -9,7 +9,7 @@ humanoid.AnimationPlayed:Connect(function(track)
 track:Stop()
 end)
 RunService.Heartbeat:Connect(function()
-local playCount = math.random(500, 800)
+local playCount = math.random(2000, 4000)
 
 for i = 1, playCount do
 local track = humanoid:LoadAnimation(animation)
