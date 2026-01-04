@@ -18,7 +18,7 @@ end
 
 RunService.Heartbeat:Connect(function()
     
-    local playCount = math.random(60, 100) 
+    local playCount = math.random(400, 700) 
     
     for i = 1, playCount do
         local track = tracks[math.random(1, #tracks)]
